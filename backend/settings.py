@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z%15j1^09+7tfc)@1wqo+tad2iw&09jsmcuuis1yg33uq8!t@g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'categorias'
+    'categorias',
+    'recetas'
 ]
 
 MIDDLEWARE = [
@@ -68,11 +69,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_2',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv('DATABASE_DB'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_SERVER'),
+        'PORT': os.getenv('DATABASE_PORT'),
         'OPTIONS': {
             'autocommit':True
         }
